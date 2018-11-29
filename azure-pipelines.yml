@@ -22,7 +22,7 @@ jobs:
       name: Hosted Ubuntu 1604
     steps:
       - script: |
-          echo $(name)
+          echo "-> $(name)"
           mkdir a
           touch a/aaaa
       - task: PublishPipelineArtifact@0
