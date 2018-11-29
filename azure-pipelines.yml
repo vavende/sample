@@ -30,3 +30,11 @@ jobs:
           go test ./...
           go build
 
+  - job: build_container
+    container: go-1.11.2
+    dependsOn:
+      - do_a
+      - do_b
+    steps:
+      - script: |
+          docker build -t foo .
