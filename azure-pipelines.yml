@@ -14,7 +14,7 @@ trigger:
   - master
 
 jobs:
-  - job: do_a
+  - job: A
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -26,7 +26,7 @@ jobs:
           artifactName: artifact_a
           targetPath: a
 
-  - job: do_b
+  - job: B
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -38,12 +38,12 @@ jobs:
           artifactName: artifact_b
           targetPath: b
 
-  - job: build_container
+  - job: Containerize
     pool:
       name: Hosted Ubuntu 1604
     dependsOn:
-      - do_a
-      - do_b
+      - A
+      - B
     steps:
       - task: DownloadPipelineArtifact@0
         inputs:
@@ -52,7 +52,7 @@ jobs:
       - task: DownloadPipelineArtifact@0
         inputs:
           artifactName: artifact_b
-          targetPath: b
+          targetPath: .
       - script: |
           find .
           pwd
