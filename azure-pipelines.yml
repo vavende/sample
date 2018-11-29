@@ -8,18 +8,28 @@ pool:
 
 resources:
   containers:
-    - container: golang
+    - container: go-1.11.2
       image: golang:1.11.2
+    - container: go-1.11.1
+      image: golang:1.11.1
 
-container: golang
-
-steps:
-  - script: |
-      go version
-      go test ./...
-      go build
-    displayName: 'Get dependencies and run tests'
-  
 trigger:
   - master
+
+jobs:
+  - job: do 11.1
+    container: go-1.11.1
+    steps:
+      - script: |
+          go version
+          go test ./...
+          go build
+
+  - job: do 11.2
+    container: go-1.11.2
+    steps:
+      - script: |
+          go version
+          go test ./...
+          go build
 
