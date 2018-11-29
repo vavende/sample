@@ -6,6 +6,11 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+resources:
+  containers:
+    - container: linux
+      image: golang:1.11.2
+
 steps:
   - script: |
       go version
