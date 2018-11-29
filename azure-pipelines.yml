@@ -20,7 +20,7 @@ jobs:
     steps:
       - script: |
           mkdir a
-          touch a/stuff
+          touch a/aaaa
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: artifact_a
@@ -32,7 +32,7 @@ jobs:
     steps:
       - script: |
           mkdir b
-          touch b/stuff
+          touch b/bbbb
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: artifact_b
@@ -52,7 +52,7 @@ jobs:
       - task: DownloadPipelineArtifact@0
         inputs:
           artifactName: artifact_b
-          targetPath: .
+          targetPath: b
       - script: |
           find .
           pwd
