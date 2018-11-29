@@ -15,26 +15,43 @@ trigger:
 
 jobs:
   - job: do_a
-    container: go-1.11.1
+    pool:
+      name: Hosted Ubuntu 1604
     steps:
       - script: |
-          go version
-          go test ./...
-          go build
+          touch a
+      - task: PublishPipelineArtifact@0
+        inputs:
+          artifactName: artifact_a
+          targetPath: a
 
   - job: do_b
-    container: go-1.11.2
+    pool:
+      name: Hosted Ubuntu 1604
     steps:
       - script: |
-          go version
-          go test ./...
-          go build
+          touch b
+      - task: PublishPipelineArtifact@0
+        inputs:
+          artifactName: artifact_b
+          targetPath: b
 
   - job: build_container
-    container: go-1.11.2
+    pool:
+      name: Hosted Ubuntu 1604
     dependsOn:
       - do_a
       - do_b
     steps:
+      - task: DownloadPipelineArtifact@0
+        inputs:
+          artifactName: artifact_a
+          targetPath: .
+      - task: DownloadPipelineArtifact@0
+        inputs:
+          artifactName: artifact_b
+          targetPath: .
       - script: |
+          find .
+          pwd
           docker build -t foo .
