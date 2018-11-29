@@ -19,7 +19,8 @@ jobs:
       name: Hosted Ubuntu 1604
     steps:
       - script: |
-          touch a
+          mkdir a
+          touch a/stuff
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: artifact_a
@@ -30,7 +31,8 @@ jobs:
       name: Hosted Ubuntu 1604
     steps:
       - script: |
-          touch b
+          mkdir b
+          touch b/stuff
       - task: PublishPipelineArtifact@0
         inputs:
           artifactName: artifact_b
