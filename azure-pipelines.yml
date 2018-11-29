@@ -14,7 +14,7 @@ trigger:
   - master
 
 jobs:
-  - job: do 11.1
+  - job: do-a
     container: go-1.11.1
     steps:
       - script: |
@@ -22,7 +22,7 @@ jobs:
           go test ./...
           go build
 
-  - job: do 11.2
+  - job: do-b
     container: go-1.11.2
     steps:
       - script: |
