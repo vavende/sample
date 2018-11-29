@@ -8,8 +8,10 @@ pool:
 
 resources:
   containers:
-    - container: linux
+    - container: golang
       image: golang:1.11.2
+
+container: golang
 
 steps:
   - script: |
