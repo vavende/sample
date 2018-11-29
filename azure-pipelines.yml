@@ -3,9 +3,6 @@
 # Add steps that save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
-pool:
-  vmImage: 'Ubuntu 16.04'
-
 resources:
   containers:
     - container: go-1.11.2
