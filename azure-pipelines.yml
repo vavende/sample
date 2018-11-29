@@ -10,6 +10,9 @@ resources:
     - container: go-1.11.1
       image: golang:1.11.1
 
+variables:
+  - group: sample
+
 trigger:
   - master
 
@@ -19,6 +22,7 @@ jobs:
       name: Hosted Ubuntu 1604
     steps:
       - script: |
+          echo $(name)
           mkdir a
           touch a/aaaa
       - task: PublishPipelineArtifact@0
